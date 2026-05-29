@@ -8,8 +8,8 @@ contract Certificate {
         string course;
         string certId;
         bool exists;
-        uint256 timestamp;   // ← when certificate was added
-        bytes32 hash;        // ← hash of certificate data
+        uint256 timestamp;  
+        bytes32 hash;       
     }
 
     address public owner;
@@ -27,12 +27,12 @@ contract Certificate {
     ) public {
         require(msg.sender == owner, "Only admin can add");
 
-        // generate hash from certId + studentName + course combined
+    
         bytes32 certHash = keccak256(
             abi.encodePacked(_certId, _studentName, _course)
         );
 
-        // block.timestamp = current time in seconds (unix timestamp)
+      
         uint256 certTimestamp = block.timestamp;
 
         certificates[_certId] = Cert(
@@ -40,8 +40,8 @@ contract Certificate {
             _course,
             _certId,
             true,
-            certTimestamp,  // ← store timestamp
-            certHash        // ← store hash
+            certTimestamp,  
+            certHash        
         );
     }
 
@@ -53,7 +53,7 @@ contract Certificate {
         return certificates[_certId].exists;
     }
 
-    // ← new function to get full certificate details including hash and timestamp
+  
     function getCertificate(string memory _certId)
         public
         view
