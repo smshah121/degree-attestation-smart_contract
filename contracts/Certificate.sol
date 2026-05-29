@@ -26,6 +26,7 @@ contract Certificate {
         string memory _course
     ) public {
         require(msg.sender == owner, "Only admin can add");
+        require(!certificates[_certId].exists, "Certificate already exists");
 
     
         bytes32 certHash = keccak256(
