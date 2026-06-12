@@ -5,7 +5,7 @@ contract DegreeAttestation {
 
     struct Degree {
         string studentId;
-        string hash;        // ← SHA256 from backend
+        string hash;       
         uint256 timestamp;
         bool exists;
     }
@@ -28,7 +28,7 @@ contract DegreeAttestation {
         _;
     }
 
-    // ── Only needs studentId + hash ────────────
+   
     function storeDegree(
         string memory _studentId,
         string memory _hash
@@ -45,14 +45,13 @@ contract DegreeAttestation {
         emit DegreeStored(_studentId, _hash, block.timestamp);
     }
 
-    // ── Verify exists ──────────────────────────
     function verifyDegree(
         string memory _studentId
     ) public view returns (bool) {
         return degrees[_studentId].exists;
     }
 
-    // ── Get hash + timestamp from chain ────────
+   
     function getDegree(
         string memory _studentId
     ) public view returns (
