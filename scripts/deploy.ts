@@ -7,7 +7,9 @@ dotenv.config();
 async function main() {
   console.log("Deploying contract to Sepolia...");
 
-  const artifactPath = resolve("artifacts/contracts/Certificate.sol/Certificate.json");
+  const artifactPath = resolve(
+    "artifacts/contracts/DegreeAttestation.sol/DegreeAttestation.json"
+  );
   const artifact = JSON.parse(readFileSync(artifactPath, "utf8"));
 
   const provider = new ethers.JsonRpcProvider(process.env.SEPOLIA_RPC_URL!);
